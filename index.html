@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para ti, mi amor Silvia💘</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to top, #ffdde1, #ee9ca7);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #inicio {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ff4e50;
+      color: white;
+      border: none;
+      padding: 20px 40px;
+      font-size: 1.5em;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      z-index: 10;
+    }
+
+    #inicio:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 10s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -15px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .message {
+      position: absolute;
+      color: white;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #000;
+      animation: fadeIn 10s linear infinite;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🎶 Audio oculto -->
+<audio id="musica" loop style="display: none;">
+  <source src="Eres Tú - Matisse, Reik - (Letra) - _.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 💫 Botón de inicio -->
+<button id="inicio">Mi Amor...</button>
+
+<script>
+  const mensajes = [
+    "Eres Mi Ternura 💖",
+    "Mi Complicidad ✨",
+    "Mi Magia 🌟",
+    "Mi Alegría 🎶",
+    "Tu risa es mi canción favorita 🎵",
+    "Eres mi lugar favorito 🏡",
+    "Contigo, todo es mejor 💫",
+    "Te Extraño mucho Mi Amor 😘",
+    "Mi Vidaaaaa..... ❤️"
+  ];
+
+  function crearCorazon() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 6 + Math.random() * 5 + "s";
+
+    const msg = document.createElement("div");
+    msg.className = "message";
+    msg.textContent = mensajes[Math.floor(Math.random() * mensajes.length)];
+    msg.style.left = heart.style.left;
+    msg.style.top = Math.random() * 80 + "vh";
+    msg.style.fontSize = (14 + Math.random() * 10) + "px";
+
+    document.body.appendChild(heart);
+    document.body.appendChild(msg);
+
+    setTimeout(() => {
+      heart.remove();
+      msg.remove();
+    }, 10000);
+  }
+
+  // 🎵 Activar música y animación al hacer clic
+  document.getElementById("inicio").addEventListener("click", () => {
+    const audio = document.getElementById("musica");
+    audio.play();
+    setInterval(crearCorazon, 800);
+    document.getElementById("inicio").style.display = "none";
+  });
+</script>
+
+</body>
+</html>
